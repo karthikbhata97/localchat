@@ -28,7 +28,7 @@ io.on('connection', function(socket) {
   options.say = "Hello";
   options.convo_id = 133;
   options.format = 'json';
-  urlstring = 'http://api.program-o.com/v2/chatbot/?bot_id=10&say=' + data.message + '&convo_id=helloworld_1231232&format=json';
+  urlstring = 'http://api.program-o.com/v2/chatbot/?bot_id=6&say=' + data.message + '&convo_id=helloworld_1231232&format=json';
     request({url: urlstring}, function(err, response, body) {
       console.log(err);
       console.log(response);
