@@ -1,0 +1,12 @@
+<div>
+  Hello {{user}}
+  <div ng-repeat="item in message track by $index">
+    {{item}}
+  </div>
+  {{waitmsg}}
+  <form ng-submit="send(msg)">
+    <input type="textarea" ng-model="msg"/>
+    <button type="submit">Send</button>
+  </form>
+  <button ng-click="clear()">Clear</button>
+</div>
