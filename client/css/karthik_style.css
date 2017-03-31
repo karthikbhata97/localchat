@@ -10,6 +10,10 @@ body {
   float: right;
 }
 
+#waiting {
+}
+
+
 form, table {
      display:inline;
 }

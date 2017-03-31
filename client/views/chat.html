@@ -7,12 +7,17 @@
   <div ng-repeat="item in message track by $index">
     {{item}}
   </div>
-  {{waitmsg}}
+  <div ng-if="waitmsg" id="waiting">
+    <br />
+    <div class="fa fa-spinner fa-lg">
+      {{waitmsg}}
+    </div>
+  </div>
   <br />
   <form ng-submit="send(msg)">
     <textarea ng-model="msg" class="form-control" rows="3" required>You: </textarea>
     <br />
     <button type="submit" class="fa fa-paper-plane btn btn-primary"> Send</button>
   </form>
-    <button ng-click="clear()" class="btn btn-danger fa fa-archive" id="clearButton"> Clear</button>
+  <button ng-click="clear()" class="btn btn-danger fa fa-archive" id="clearButton"> Clear</button>
 </div>
