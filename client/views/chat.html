@@ -1,12 +1,18 @@
+<br />
 <div>
-  Hello {{user}}
+  <i class="fa fa-user fa-2x" aria-hidden="true"> {{user}}</i>
+  <button ng-click="close()" class="btn btn-default fa fa-times fa-lg" id="closeButton"></button>
+  <br />
+  <br />
   <div ng-repeat="item in message track by $index">
     {{item}}
   </div>
   {{waitmsg}}
+  <br />
   <form ng-submit="send(msg)">
-    <input type="textarea" ng-model="msg"/>
-    <button type="submit">Send</button>
+    <textarea ng-model="msg" class="form-control" rows="3" required>You: </textarea>
+    <br />
+    <button type="submit" class="fa fa-paper-plane btn btn-primary"> Send</button>
   </form>
-  <button ng-click="clear()">Clear</button>
+    <button ng-click="clear()" class="btn btn-danger fa fa-archive" id="clearButton"> Clear</button>
 </div>

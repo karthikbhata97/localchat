@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Chat App</title>
-    <script type="text/javascript" src="/js/angular.js"></script>
-    <script type="text/javascript" src="/js/angular-route.js"></script>
-    <script type="text/javascript" src="/js/socket.io.js"></script>
-    <script type="text/javascript" src="/app.js"></script>
-    <script type="text/javascript" src="/controllers/chatcontroller.js"></script>
-    <script type="text/javascript" src="/controllers/entercontroller.js"></script>
-
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Chat App</title>
+  <script type="text/javascript" src="/js/angular.js"></script>
+  <script type="text/javascript" src="/js/angular-route.js"></script>
+  <script type="text/javascript" src="/js/socket.io.js"></script>
+  <script type="text/javascript" src="/app.js"></script>
+  <script type="text/javascript" src="/controllers/chatcontroller.js"></script>
+  <script type="text/javascript" src="/controllers/entercontroller.js"></script>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/karthik_style.css" rel="stylesheet">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
     <div ng-app="chatApp" ng-controller="mainController">
       <div ng-view="">
 
       </div>
     </div>
-  </body>
+  </div>
+</body>
 </html>

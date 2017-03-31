@@ -19,13 +19,13 @@ app.config(function($routeProvider) {
     controller: 'entercontroller'
   })
   .when('/chat', {
-    resolve: {
+/*    resolve: {
       "check": function(UserName, $location) {
         if(!UserName.getuser()) {
           $location.path('/').replace();
         }
       }
-    },
+    },*/
     templateUrl: '/views/chat.html',
     controller: 'chatcontroller'
   })
