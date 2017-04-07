@@ -3,7 +3,8 @@ app = express(),
 spawn = require('child_process').spawn,
 py = spawn('python', ['helloworld.py']),
 request = require('request')
-http = require('http');
+http = require('http'),
+users = [];
 
 var server = app.listen(3000, function() {
   console.log("Running at port 3k");
@@ -12,33 +13,33 @@ var server = app.listen(3000, function() {
 var io = require('socket.io').listen(server);
 
 app.use('/', express.static(__dirname + '/client/'));
-/*
-http://www.program-o.com/chatbotapi
-6 	Program O 	The original chatbot
-10 	ShakespeareBot 	Talk to William Shakespeare!
-12 	Chatmundo 	Talk to the twitterbot!
-15 	Elizaibeth 	Talk to me!
-*/
+
+app.get('/api/getuserlist', function(req, res) {
+  res.send(users);
+});
 
 io.on('connection', function(socket) {
   console.log("connection created");
   socket.on('new_message', function(data) {
-  var options = {};
-  options.bot_id = 6;
-  options.say = "Hello";
-  options.convo_id = 133;
-  options.format = 'json';
-  urlstring = 'http://api.program-o.com/v2/chatbot/?bot_id=6&say=' + data.message + '&convo_id=helloworld_1231232&format=json';
-    request({url: urlstring}, function(err, response, body) {
-      console.log(err);
-      console.log(response);
-      console.log(body);
       io.emit('reply', {
-        message: 'Bot reply',
-        data: JSON.parse(body).botsay,
+        message: data.user,
+        data: data.message,
         user: data.user
       });
+  });
+
+  socket.on('add_user', function(data) {
+    users.push(data.username);
+    io.emit('new_user', {
+      username: data.username,
+      message: "New user logged in: " + data.username
     })
   });
 
+  socket.on('logout_user', function(data) {
+    users.splice(users.indexOf(data.username), 1);
+    io.emit("logout", {
+      username: data.username
+    })
+  })
 });

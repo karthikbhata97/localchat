@@ -5,18 +5,13 @@ app.controller("chatcontroller", function($scope, socket, UserName, $location) {
   $scope.waitmsg = null;
   $scope.user = UserName.getuser();
   $scope.send = function(message) {
-    $scope.message.push("You: " + message);
     socket.emit('new_message', {"message": message, "user": $scope.user});
     $scope.msg=null;
-    $scope.waitmsg = "Waiting for the reply...";
   }
 
   socket.on('reply', function(data) {
     $scope.$apply(function() {
-      if(data.user==$scope.user) {
-        $scope.waitmsg = null
-        $scope.message.push("Bot: " + data.data);
-      }
+      $scope.message.push(data.user + ": " + data.data);
     })
   });
 
@@ -25,8 +20,15 @@ app.controller("chatcontroller", function($scope, socket, UserName, $location) {
   }
 
   $scope.close = function() {
+    socket.emit('logout_user', {username: $scope.user});
     UserName.adduser(null);
     $location.path('/').replace();
   }
+
+  socket.on("logout", function(data){
+    $scope.$apply(function() {
+      $scope.userlist.splice($scope.userlist.indexOf(data.username), 1);
+    })
+  })
 
 });

@@ -1,4 +1,4 @@
-var app = angular.module("chatApp", ['ngRoute']);
+var app = angular.module("chatApp", ['ngRoute', 'ngResource']);
 
 app.factory('socket', function($rootScope) {
   var socket = io.connect();
