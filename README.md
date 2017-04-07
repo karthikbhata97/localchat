@@ -1,1 +1,10 @@
-### Thanks to **http://www.program-o.com/chatbotapi**
+## Running on nodejs express server server
+* Uses socket.io library
+* Run
+```
+node index.js
+```
+
+
+### Chat on local server.
+
